@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ClearSky Weather App with Next.js 13
 
-## Getting Started
+This is a simple weather app built with Next.js 13 that allows you to check the weather forecast for different locations. It uses  [Weather Api](https://www.weatherapi.com/)  for fetching weather data.
 
-First, run the development server:
+## Features
+
+- View current weather conditions for a specific location.
+- Get a 7-day weather forecast.
+- Get weather of locations in &deg;C and &deg;F.
+- Dark and Light mode.
+
+## Installation
+
+To run this app locally, follow these steps:
+
+1\. Clone the repository to your local machine:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/dayoolacodes/clearsky.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2\. Navigate to the project directory:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cd clearsky
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3\. Install the dependencies:
 
-## Learn More
+```
+npm install
 
-To learn more about Next.js, take a look at the following resources:
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4\. Configure API Keys:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   - You will need to obtain an API key from [Weather Api](https://www.weatherapi.com/)  and configure it in your project. Refer to the [API Docs](https://app.swaggerhub.com/apis-docs/WeatherAPI.com/WeatherAPI/1.0.2-oas3-oas3.1-oas3.1/#/APIs) for more details.
 
-## Deploy on Vercel
+5\. Start the development server:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+yarn dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+6\. Open your browser and access the app at [http://localhost:3000](http://localhost:3000).
+
+## Configuration
+
+You can configure the app by modifying the following files:
+
+- Create a `.env` file in the project root and configure it with your API key as follows:
+
+```plaintext
+NEXT_PUBLIC_API_KEY=your_api_key_here
+```
+
+## Usage
+
+- Enter a location in the search bar to get the current weather and 7-day forecast.
+
+
+## Acknowledgments
+
+- [Weather API](https://www.weatherapi.com/) for providing weather data.
+
+
+## Resources
+
+- Next.js 13 Documentation: [https://nextjs.org/docs](https://nextjs.org/docs)
+
+- [API Provider Documentation]: [Weather API Docs](https://app.swaggerhub.com/apis-docs/WeatherAPI.com/WeatherAPI/1.0.2-oas3-oas3.1-oas3.1/#/APIs)
+
