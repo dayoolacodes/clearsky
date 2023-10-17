@@ -6,7 +6,7 @@
     "dev-pre": "[ -f babel.config.js ] && mv babel.config.js temp-babel.config.js || true",
     "dev-post": "mv temp-babel.config.js babel.config.js",
     "dev": "yarn dev-pre && NODE_ENV=development next dev && yarn dev-post",
-    "build": "[ -f babel.config.js ] && mv babel.config.js temp-babel.config.jsnext build",
+    "build": "[ -f babel.config.js ] && mv babel.config.js temp-babel.config.js && next build",
     "start": "next start",
     "lint": "next lint",
     "test": "[ -f temp-babel.config.js ] && mv temp-babel.config.js babel.config.js && jest || jest",
