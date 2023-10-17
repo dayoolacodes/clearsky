@@ -70,3 +70,4 @@ NEXT_PUBLIC_API_KEY=your_api_key_here
 
 - [API Provider Documentation]: [Weather API Docs](https://app.swaggerhub.com/apis-docs/WeatherAPI.com/WeatherAPI/1.0.2-oas3-oas3.1-oas3.1/#/APIs)
 
+**Note:** The minimum Node.js version that supports Next.js 13 is 16.14.0.
