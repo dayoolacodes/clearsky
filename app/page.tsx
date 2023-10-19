@@ -26,7 +26,7 @@ export default function Home() {
           return null;
         }
       })
-      .catch((err) => console.log(err))
+      .catch((err) => console.error(err))
       .finally(() => setLoading(false));
   }, [setAppState]);
 
