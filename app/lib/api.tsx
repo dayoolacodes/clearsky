@@ -9,7 +9,7 @@ export const getCurrentWeather = async ({ city }: { city: string }) => {
 
 export const getWeather = async ({ city }: { city: string }) => {
   const res = await fetch(
-    `https://api.weatherapi.com/v1/forecast.json?days=7&key=${process.env.NEXT_PUBLIC_API_KEY}&aqi=no&q=${city}`
+    `https://api.weatherapi.com/v1/forecast.json?days=8&key=${process.env.NEXT_PUBLIC_API_KEY}&aqi=no&q=${city}`
   );
   const data = await res.json();
 

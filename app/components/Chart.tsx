@@ -12,11 +12,11 @@ export default function Chart({ appState }: AppContextType) {
     ({ date, day }: any) => {
       return {
         date,
-        stars:
+        degree:
           appState.degree === Degree.CELSIUS ? day.avgtemp_c : day.avgtemp_f,
       };
     }
-  );
+  ).slice(1); //next 7days minus today
 
   const data: { label: string; data: MyDatum[] }[] = [
     {
@@ -25,7 +25,7 @@ export default function Chart({ appState }: AppContextType) {
     },
   ];
 
-  type MyDatum = { date: Date; stars: number };
+  type MyDatum = { date: Date; degree: number };
 
   const primaryAxis = React.useMemo(
     (): AxisOptions<MyDatum> => ({
@@ -37,7 +37,7 @@ export default function Chart({ appState }: AppContextType) {
   const secondaryAxes = React.useMemo(
     (): AxisOptions<MyDatum>[] => [
       {
-        getValue: (datum) => datum.stars,
+        getValue: (datum) => datum.degree,
         elementType: "area",
       },
     ],
