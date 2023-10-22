@@ -26,7 +26,7 @@ export default Header;
 const Logo = () => {
   return (
     <div
-      className="font-bold cursor-pointer text-3xl dark:text-white hover:text-slate-500 transition"
+      className="font-bold cursor-pointer text-3xl dark:text-white hover:text-slate-500 transition max-w-[150px]"
       onClick={() => window.location.reload()}
     >
       ClearSky
@@ -37,7 +37,7 @@ const Logo = () => {
 const Date = () => {
   return (
     <div className="lg:mx-5 text-sm dark:text-white">
-      {dayjs().format("dddd hh:MMa")}
+      {dayjs().format("dddd hh:mma")}
     </div>
   );
 };
