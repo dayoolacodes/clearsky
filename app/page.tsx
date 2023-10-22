@@ -3,19 +3,19 @@ import React, { useEffect, useState } from "react";
 import Cards from "./components/CardComponent/Cards";
 import Header from "./components/Header";
 import WeatherHero from "./components/WeatherHero";
-import { getWeather } from "./lib/api";
 import { WeatherDataType } from "./helpers/types";
 import { useAppContext } from "./context/AppContext";
 import Loader from "./components/Loader";
 import Charts from "./components/Chart";
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true)
   const { appState, setAppState } = useAppContext();
 
   //initial load with defaultValue -Leeds
   useEffect(() => {
-    getWeather({ city: "Leeds" })
+    fetch(`./api/weather/Leeds`)
+      .then((resp) => resp.json())
       .then((resp: WeatherDataType) => {
         if (resp.current) {
           setAppState((val) => ({
@@ -28,7 +28,7 @@ export default function Home() {
       })
       .catch((err) => console.error(err))
       .finally(() => setLoading(false));
-  }, [setAppState]);
+  }, []);
 
   if (loading)
     return (

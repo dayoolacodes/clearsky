@@ -3,12 +3,14 @@ import React, { useEffect, useRef, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { useDebouncedValue } from "../helpers/hooks";
 import { useAppContext } from "../context/AppContext";
-import { getWeather } from "../lib/api";
 import { WeatherDataType } from "../helpers/types";
 
 export const Search = () => {
   const [search, setSearch] = useState("");
-  const debouncedValue = useDebouncedValue({ initialValue: search });
+  const debouncedValue = useDebouncedValue({
+    initialValue: search,
+    delay: 500,
+  });
   const { setAppState } = useAppContext();
   const inputRef = useRef<HTMLInputElement>(null);
   const [errMsg, setErrMsg] = useState<string>("");
@@ -16,8 +18,9 @@ export const Search = () => {
   useEffect(() => {
     if (!debouncedValue) return;
 
-    getWeather({ city: debouncedValue })
-      .then((resp: WeatherDataType) => {
+    fetch(`./api/weather/${debouncedValue}`)
+      .then((resp) => resp.json())
+      .then((resp: WeatherDataType | any) => {
         if (resp.current) {
           setErrMsg(" ");
           setAppState((val) => ({
@@ -25,19 +28,25 @@ export const Search = () => {
             weatherData: resp,
           }));
         } else {
-          setErrMsg("Location Not Found");
+          setErrMsg(resp.error.message);
           return null;
         }
       })
-      .catch((err) => err);
-  }, [setAppState, debouncedValue, search]);
+      .catch((err) => {
+        setErrMsg(err.error.message);
+        return err;
+      });
+  }, [debouncedValue]);
 
   useEffect(() => {
     if (inputRef.current) inputRef.current.focus();
   }, []);
 
   return (
-    <div className="flex flex-col lg:items-center dark:text-white" data-testid="search_component">
+    <div
+      className="flex flex-col lg:items-center dark:text-white"
+      data-testid="search_component"
+    >
       <div className="relative flex lg:mx-5 md:mt-5 sm:mt-5">
         <CiSearch className="absolute top-3 left-2 dark:text-white" />
         <input
@@ -47,9 +56,12 @@ export const Search = () => {
           onChange={(e) => setSearch(e.target.value)}
           value={search}
           ref={inputRef}
+          onKeyDown={() => setErrMsg("")}
         />
       </div>
-      {debouncedValue && <div className="font-semibold md:mt-3 sm:mt-3">{errMsg}</div>}
+      {debouncedValue && (
+        <div className="font-semibold md:mt-3 sm:mt-3">{errMsg}</div>
+      )}
     </div>
   );
 };
