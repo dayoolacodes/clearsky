@@ -16,7 +16,7 @@ export default function Chart({ appState }: AppContextType) {
           appState.degree === Degree.CELSIUS ? day.avgtemp_c : day.avgtemp_f,
       };
     }
-  ).slice(1); //next 7days minus today
+  )
 
   const data: { label: string; data: MyDatum[] }[] = [
     {
@@ -47,7 +47,7 @@ export default function Chart({ appState }: AppContextType) {
   return (
     <div className="dark:bg-gray-800/80 bg-black/30 dark:text-white mt-10 w-full lg:p-10 sm:p-3 text-sm font-semibold rounded-3xl">
       <p className="mb-6">
-        Average temperature chart for the next 7 days in &deg;{appState.degree}
+        Average temperature chart for the next 3 days in &deg;{appState.degree}
       </p>
       <ResizableBox height={180} responsive={true}>
         <ReactChart
